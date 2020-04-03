@@ -106,8 +106,10 @@ class TicTacToe
    end 
   end 
   
+  #The game is over is someone has won or there is a draw
+  
   def over?
-    if won? != nil || draw? 
+    if won? || draw? 
       true
     end 
   end
