@@ -1,0 +1,107 @@
+def input_to_index(user_input)
+  user_input.to_i - 1
+end
+
+
+def move(index, current_player = "X")
+  @board[index] = current_player
+end
+
+
+def position_taken?(position)
+  if @board[position] == "X" || @board[position] == "O"
+    true
+  else
+    false
+  end
+end
+
+
+
+def turn_count
+  turn = 0
+  @board.each do |index|
+    if index == "X" || index =="O"
+      turn += 1
+    end
+  end
+  return turn
+end
+
+def current_player
+  num_turns = turn_count
+  if num_turns % 2 == 0
+    player = "X"
+  else
+    player = "O"
+  end
+  return player
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def full?
+  @board.all? {|index| index == "X" || index == "O"}
+end
+
+def draw?
+  if !won? && full?
+    return true
+  else
+    return false
+  end
+end
+
+def over?
+  if won? || draw?
+    return true
+  else
+    return false
+  end
+end
+
+def winner
+  index = []
+  index = won?
+  if index == false
+    return nil
+  else
+    if @board[index[0]] == "X"
+      return "X"
+    else
+      return "O"
+    end
+  end
+end
+
+def play
+  until over? == true
+    turn
+  end
+
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
+    puts "Ended in a draw"
+  end
+end
+
+end
